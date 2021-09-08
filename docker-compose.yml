@@ -1,0 +1,23 @@
+version: '3'
+services:
+  api:
+    build:
+      context: ./api
+      dockerfile: Dockerfile_env
+    image: drf-tegakihira-image
+    container_name: tegakihira-api
+    ports:
+      - '8000:8000'
+      - '8888:8888'
+    volumes:
+      - ./api/:/usr/src/tegakihira/api/
+    tty: true
+  web:
+    build: ./web
+    image: vue-tegakihira-image
+    container_name: tegakihira-web
+    ports:
+      - '8080:8080'
+    volumes:
+      - ./web/:/usr/src/tegakihira/web/
+    tty: true
